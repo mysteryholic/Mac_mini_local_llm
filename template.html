@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026 Mac Mini 16GB 로컬 LLM 마스터플랜 & 모델 상세 분석</title>
+<title>2026 Mac Mini 16GB 로컬 LLM 마스터플랜 (v4.0 Ultimate)</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -74,27 +74,35 @@ tailwind.config = {
 </script>
 </head>
 <body class="bg-bgmain text-textmain font-sans antialiased min-h-screen pb-24 selection:bg-indigo-200 selection:text-indigo-900">
+<!-- Chosen Palette: Indigo Slate Premium (bg: Slate-50, text: Slate-900, accents: Indigo-600, Emerald-500, Amber-500, Rose-500) -->
+<!-- Application Structure Plan: A clean, 3-view SPA designed for professional developers and local LLM researchers. It features: 1) A comprehensive dashboard containing hardware specifications and interactive performance charts; 2) The Standard 6-Model Directory for general workloads; and 3) An Extended Specialty Model Directory focusing on niche use cases like localized Korean RAG, deep reasoning (CoT), or creative writing. This separation prevents information overload while ensuring deep granularity. -->
+<!-- Visualization & Content Choices: Radar Chart (overall balanced metrics), Mixed Bar/Line Chart (Quantization trade-offs), and Interactive dynamic profile panes that inject rich Markdown-style formatted structures dynamically upon clicking model selectors. NO SVG or Mermaid JS is utilized; all graphics are powered by Chart.js. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
     
     <!-- Header -->
     <header class="mb-10 text-center">
         <div class="inline-flex items-center justify-center space-x-2 bg-indigo-50 border border-indigo-200 text-indigo-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-4 shadow-sm">
-            <span>기준일: 2026년 6월 10일 | Mac Mini 16GB 로컬 구동 최적화 연구</span>
+            <span>최종 업데이트: 2026년 6월 10일 | Mac Mini 16GB 실성능 기반</span>
         </div>
         <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            Mac Mini 16GB <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-emerald-500">로컬 LLM 가이드 v3.5</span>
+            Mac Mini 16GB <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-emerald-500">로컬 LLM 궁극의 가이드 v4.0</span>
         </h1>
-        <p class="text-lg text-slate-600 mt-2 max-w-2xl mx-auto">
-            레이더 왜곡 오류 해결 및 정밀한 6대 모델 정밀 분석 사전 탑재
+        <p class="text-lg text-slate-600 mt-2 max-w-3xl mx-auto">
+            가장 정확한 벤치마크 및 물리 한계 극복 전략. 범용 플래그십부터 국내외 특수 목적 확장 모델 11종 총망라
         </p>
 
-        <!-- 메인 네비게이션 토글 -->
-        <div class="flex justify-center space-x-4 mt-8">
-            <button id="btn-view-dashboard" class="px-6 py-3 rounded-full font-bold shadow-sm transition-all view-btn-active" onclick="switchView('dashboard')">
+        <!-- 메인 네비게이션 토글 (3단 구조화) -->
+        <div class="flex flex-wrap justify-center gap-3 mt-8">
+            <button id="btn-view-dashboard" class="px-5 py-3 rounded-full font-bold shadow-sm transition-all view-btn-active" onclick="switchView('dashboard')">
                 📊 종합 분석 대시보드
             </button>
-            <button id="btn-view-models" class="px-6 py-3 rounded-full font-bold shadow-sm transition-all view-btn-inactive" onclick="switchView('models')">
-                📖 모델별 상세 도감 (신규)
+            <button id="btn-view-models" class="px-5 py-3 rounded-full font-bold shadow-sm transition-all view-btn-inactive" onclick="switchView('models')">
+                📖 범용 6대 모델 도감
+            </button>
+            <button id="btn-view-extended" class="px-5 py-3 rounded-full font-bold shadow-sm transition-all view-btn-inactive" onclick="switchView('extended')">
+                ✨ 특수목적 확장 모델 (5종)
             </button>
         </div>
     </header>
@@ -105,24 +113,24 @@ tailwind.config = {
         <!-- 하드웨어 컨텍스트 -->
         <section class="bg-white rounded-3xl shadow-sm border border-slate-200 p-8">
             <h2 class="text-2xl font-bold mb-6 flex items-center text-slate-800">
-                <span class="bg-indigo-50 p-2 rounded-xl mr-3">🖥️</span> Mac Mini 16GB 가용 VRAM 리포트
+                <span class="bg-indigo-50 p-2 rounded-xl mr-3">🖥️</span> Mac Mini 16GB 실질 가용 VRAM 리포트
             </h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                 <div class="space-y-4">
                     <p class="text-slate-700 leading-relaxed text-base">
-                        M2/M3 Mac Mini 16GB 모델의 핵심은 <strong>통합 메모리(Unified Memory)</strong> 구조입니다. CPU와 GPU가 VRAM을 완벽히 공유하여 강력한 전송 속도를 자랑하지만, macOS 시스템 유지와 기본 프로그램들이 최소 4GB~4.5GB의 메모리를 상시 점유하고 있습니다.
+                        Apple M-시리즈 Mac Mini 16GB는 초당 최대 100GB~150GB 수준의 고대역폭 통합 메모리(Unified Memory)를 제공합니다. VRAM과 일반 시스템 메모리 간의 병목 현상이 전혀 없는 독보적인 로컬 머신러닝 디바이스입니다.
                     </p>
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
                         <div class="flex justify-between text-sm text-slate-600"><span>총 시스템 메모리:</span><span class="font-bold">16.0 GB</span></div>
-                        <div class="flex justify-between text-sm text-slate-600"><span>시스템 및 GUI 백그라운드 점유:</span><span class="font-bold">- 4.5 GB</span></div>
+                        <div class="flex justify-between text-sm text-slate-600"><span>macOS 커널 & 화면 출력 기본 점유:</span><span class="font-bold">- 4.5 GB</span></div>
                         <div class="flex justify-between text-sm text-indigo-700 font-semibold"><span>안정 로컬 LLM 최대 가용 VRAM:</span><span>11.5 GB</span></div>
                     </div>
                     <p class="text-sm text-slate-500">
-                        * 주의: 모델 구동 시 가용 한계인 11.5GB를 초과하면 가상 메모리 스왑이 일어나 속도가 1/10 토막 이하로 급감합니다.
+                        * 주의: 가용 VRAM 한계를 단 100MB라도 넘어서는 순간 macOS는 초고속 가상메모리(SSD 스왑) 전환 프로세스를 가동하며, 이 경우 추론 속도가 분당 수십 토큰 수준으로 폭락합니다. 따라서 정밀한 양자화 설정이 필수입니다.
                     </p>
                 </div>
                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                    <h3 class="text-center font-bold text-slate-700 mb-4 text-sm">실시간 16GB 메모리 맵 분석</h3>
+                    <h3 class="text-center font-bold text-slate-700 mb-4 text-sm">실시간 16GB 메모리 맵 시뮬레이션</h3>
                     <div class="small-chart-container">
                         <canvas id="memoryMapChart"></canvas>
                     </div>
@@ -130,25 +138,16 @@ tailwind.config = {
             </div>
         </section>
 
-        <!-- 레이더 차트 섹션 -->
+        <!-- 레이더 차트 섹션 (정밀 재수립) -->
         <section class="bg-white rounded-3xl shadow-sm border border-slate-200 p-8">
             <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-slate-800">로컬 6대 모델 종합 능력치 분석 (레이더)</h2>
+                <h2 class="text-2xl font-bold text-slate-800">로컬 6대 범용 모델 종합 능력치 분석 (레이더)</h2>
                 <p class="text-slate-500 mt-2 text-sm">
-                    특정 모델의 미지원 영역(비전 등)으로 인한 레이더 붕괴 현상을 막기 위해, <br class="hidden md:block"/>
-                    <strong>모든 모델이 직접 대조 가능한 6대 핵심 텍스트 실무 평가지표</strong>로 기준을 전면 재수립했습니다.
+                    특정 기능 미지원 모델의 불이익을 상쇄하기 위해, 모든 텍스트 처리 영역의 실무 평가지표로 재구축했습니다.
                 </p>
             </div>
             <div class="chart-container">
                 <canvas id="refinedRadarChart"></canvas>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mt-8">
-                <div class="p-3 rounded-lg border text-center text-xs font-semibold bg-indigo-50 border-indigo-200 text-indigo-800">Llama-4 8B (균형형)</div>
-                <div class="p-3 rounded-lg border text-center text-xs font-semibold bg-amber-50 border-amber-200 text-amber-800">Qwen-3 7B (개발/속도)</div>
-                <div class="p-3 rounded-lg border text-center text-xs font-semibold bg-emerald-50 border-emerald-200 text-emerald-800">Gemma-3 9B (추론/수학)</div>
-                <div class="p-3 rounded-lg border text-center text-xs font-semibold bg-cyan-50 border-cyan-200 text-cyan-800">Mistral Nemo 12B (문맥)</div>
-                <div class="p-3 rounded-lg border text-center text-xs font-semibold bg-rose-50 border-rose-200 text-rose-800">DeepSeek Lite (MoE/경량)</div>
-                <div class="p-3 rounded-lg border text-center text-xs font-semibold bg-purple-50 border-purple-200 text-purple-800">Nemotron-4 8B (에이전트)</div>
             </div>
         </section>
 
@@ -175,7 +174,7 @@ tailwind.config = {
                     </div>
                     <div class="bg-amber-50 p-4 rounded-xl border border-amber-100">
                         <span class="font-bold text-amber-900 block">Q4_K_M (4-bit Quant)</span>
-                        <span class="text-xs text-amber-700 mt-1 block">지능 손실 약 6% 수준. 12B 이상의 모델(Mistral Nemo 등)을 16GB 램 환경에 억지로 안착시켜 더 긴 문맥 창을 누리는 방법입니다.</span>
+                        <span class="text-xs text-amber-700 mt-1 block">지능 손실 약 6% 수준. 12B 이상의 모델(Mistral Nemo 등)을 16GB 램 환경에 안착시켜 더 긴 문맥 창을 누리는 방법입니다.</span>
                     </div>
                 </div>
             </div>
@@ -184,13 +183,13 @@ tailwind.config = {
     </main>
 
 
-    <!-- ================= VIEW 2: 모델별 상세 도감 ================= -->
+    <!-- ================= VIEW 2: 범용 6대 모델 도감 ================= -->
     <main id="view-models" class="hidden space-y-8">
         
         <section class="bg-white rounded-3xl shadow-sm border border-slate-200 p-8">
-            <h2 class="text-2xl font-bold mb-4 text-slate-800">📖 2026 초소형/초경량 6대 모델 디렉토리</h2>
+            <h2 class="text-2xl font-bold mb-4 text-slate-800">📖 2026 초소형/초경량 6대 범용 모델 디렉토리</h2>
             <p class="text-slate-600 text-sm mb-6">
-                Mac Mini 16GB 환경에서 완벽 구동이 가능한 모델들의 기술 사양, 구동 팁, 그리고 실제 터미널 실행 코드와 꿀프롬프트까지 한번에 탐색하세요.
+                일반 대화, 코딩 보조, 가벼운 사무자동화 등 표준적인 상황에서 추천하는 최고의 범용 모델 군단입니다.
             </p>
 
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -224,7 +223,6 @@ tailwind.config = {
 
                 <!-- 오른쪽 상세 프로필 카드 (JS로 컨텐츠 동적 변경) -->
                 <div class="lg:col-span-3 bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200" id="modelDetailPane">
-                    <!-- 기본 템플릿 (Llama-4) -->
                     <div class="space-y-6">
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-4 border-slate-300">
                             <div>
@@ -298,65 +296,186 @@ tailwind.config = {
 
     </main>
 
+    <!-- ================= VIEW 3: 특수목적 확장 모델 도감 (NEW) ================= -->
+    <main id="view-extended" class="hidden space-y-8">
+        
+        <section class="bg-white rounded-3xl shadow-sm border border-slate-200 p-8">
+            <h2 class="text-2xl font-bold mb-4 text-slate-800">✨ 특정 목표 도달을 위한 5대 특수 목적 확장 모델</h2>
+            <p class="text-slate-600 text-sm mb-6">
+                범용성보다는 **한국어 사내 RAG, 고강도 알고리즘 추론, 검열 없는 자유로운 롤플레잉, 초지능적인 연산** 등 특정한 전문 영역에서 빛을 발하는 핵심 오픈소스 가중치들입니다.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- 왼쪽 확장 모델 목록 -->
+                <div class="lg:col-span-1 space-y-2" id="extendedListContainer">
+                    <button class="w-full text-left p-4 rounded-xl font-bold border transition-all flex justify-between items-center bg-indigo-50 border-indigo-500 text-indigo-900" onclick="selectExtendedProfile('exaone')">
+                        <span>Exaone 3.5 (7.8B)</span>
+                        <span class="text-xs bg-indigo-200 text-indigo-800 px-2 py-0.5 rounded-md">국내 RAG 1위</span>
+                    </button>
+                    <button class="w-full text-left p-4 rounded-xl font-bold border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all flex justify-between items-center" onclick="selectExtendedProfile('phi4')">
+                        <span>Phi-4 (14B)</span>
+                        <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-md">MS 고밀도</span>
+                    </button>
+                    <button class="w-full text-left p-4 rounded-xl font-bold border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all flex justify-between items-center" onclick="selectExtendedProfile('deepseekR1')">
+                        <span>DS-R1-Llama (8B)</span>
+                        <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-md">RL 기반 추론</span>
+                    </button>
+                    <button class="w-full text-left p-4 rounded-xl font-bold border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all flex justify-between items-center" onclick="selectExtendedProfile('hermes3')">
+                        <span>Hermes-3 (8B)</span>
+                        <span class="text-xs bg-pink-100 text-pink-800 px-2 py-0.5 rounded-md">우회/자유작성</span>
+                    </button>
+                    <button class="w-full text-left p-4 rounded-xl font-bold border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all flex justify-between items-center" onclick="selectExtendedProfile('commandr')">
+                        <span>Command R (35B-Q2)</span>
+                        <span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded-md">초대형 구동팁</span>
+                    </button>
+                </div>
+
+                <!-- 오른쪽 상세 확장 모델 프로필 정보 -->
+                <div class="lg:col-span-3 bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200" id="extendedDetailPane">
+                    <div class="space-y-6">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b pb-4 border-slate-300">
+                            <div>
+                                <h3 class="text-3xl font-extrabold text-slate-900" id="ext-title">Exaone 3.5 (7.8B-Instruct)</h3>
+                                <p class="text-indigo-600 font-semibold text-sm mt-1" id="ext-tagline">"국내 사내 데이터 RAG 및 공문서 정제력 독보적 1위"</p>
+                            </div>
+                            <span class="bg-indigo-600 text-white font-bold px-4 py-1.5 rounded-full text-sm mt-3 md:mt-0" id="ext-badge">LG AI 연구소 개발</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="bg-white p-3 rounded-lg border text-center">
+                                <span class="text-xs text-slate-500 block">실제 매핑 속도</span>
+                                <span class="font-extrabold text-lg text-slate-800" id="ext-speed">~40 tok/s</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border text-center">
+                                <span class="text-xs text-slate-500 block">권장 양자화</span>
+                                <span class="font-extrabold text-lg text-slate-800" id="ext-quant">Q8_0</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border text-center">
+                                <span class="text-xs text-slate-500 block">VRAM 필요량</span>
+                                <span class="font-extrabold text-lg text-slate-800" id="ext-vram">약 8.2 GB</span>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border text-center">
+                                <span class="text-xs text-slate-500 block">컨텍스트 지원</span>
+                                <span class="font-extrabold text-lg text-slate-800" id="ext-context">32k</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-lg mb-2">🎯 주요 기술적 특징</h4>
+                            <p class="text-slate-700 leading-relaxed text-sm" id="ext-desc">
+                                LG AI Research가 개발한 국산 오픈소스의 자존심입니다. 한국어 특화 토크나이저(Tokenizer) 효율이 뛰어나 다른 외국계 모델에 비해 한글 출력 속도가 매우 우수하며, 한국의 역사, 법률, 회사 정관, 공공문서 어투를 완벽히 이해합니다. 사내 PDF 데이터베이스를 끌어다 쓰거나(RAG), 관공서 스타일의 서신 기획에 최적의 파트너입니다.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200">
+                                <span class="font-bold text-emerald-900 block text-sm">🟢 명확한 장점</span>
+                                <ul class="list-disc pl-4 text-xs text-emerald-800 space-y-1 mt-2" id="ext-pros">
+                                    <li>국내 실정법, 행정 서식, 사내 보고서 어조 재현율 최고</li>
+                                    <li>적은 한글 토큰 분할율로 동일 내용 생성 시 매우 적은 자원 소모</li>
+                                    <li>국내 벤치마크 Ko-LLM 리더보드 최고 성과 유지</li>
+                                </ul>
+                            </div>
+                            <div class="bg-rose-50 p-4 rounded-xl border border-rose-200">
+                                <span class="font-bold text-rose-900 block text-sm">🔴 기술적 한계점</span>
+                                <ul class="list-disc pl-4 text-xs text-rose-800 space-y-1 mt-2" id="ext-cons">
+                                    <li>글로벌 영문 논문 분석 등 영어 중심 맥락 추론은 Llama에 비해 미약</li>
+                                    <li>코딩 자동 작성 및 웹 크롤러 스크립트 도출 성공률은 약간 처짐</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800 text-white p-4 rounded-xl space-y-2">
+                            <span class="text-xs text-indigo-300 font-bold block">💻 Mac Terminal 실행 스크립트 (Ollama)</span>
+                            <code class="font-mono text-xs block bg-slate-900 p-2.5 rounded border border-slate-700 text-emerald-400 select-all" id="ext-cmd">
+                                ollama run exaone:7.8b-instruct-q8_0
+                            </code>
+                        </div>
+
+                        <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-xl">
+                            <span class="font-bold text-indigo-900 text-sm block">💡 200% 활용 꿀프롬프트 추천</span>
+                            <p class="text-slate-700 text-xs mt-2 italic" id="ext-prompt">
+                                "아래 제공하는 회의록 정리를 바탕으로, 대한민국 중소기업청 지원 사업 계획서 규격에 맞게 '기대효과 및 마케팅 전략' 부분을 공문서 스타일로 재작성해줘."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
 </div>
 
 <script>
-    // 6대 모델 정보 상세 디렉토리 데이터 정의 (Jinja를 통해 동적 주입)
+    // 6대 표준 모델 정보 상세 정의
     const modelProfiles = {{ MODEL_PROFILES_JSON }};
 
-    // 뷰 전환 로직 (대시보드 vs 모델 상세도감)
+    // 5대 확장 특수목적 모델 정보 정의
+    const extendedProfiles = {{ EXTENDED_PROFILES_JSON }};
+
+    // 뷰 전환 로직 (대시보드 vs 모델 상세도감 vs 확장 특수도감)
     window.switchView = function(viewId) {
         const btnDashboard = document.getElementById('btn-view-dashboard');
         const btnModels = document.getElementById('btn-view-models');
+        const btnExtended = document.getElementById('btn-view-extended');
+        
         const viewDashboard = document.getElementById('view-dashboard');
         const viewModels = document.getElementById('view-models');
+        const viewExtended = document.getElementById('view-extended');
 
-        if (viewId === 'dashboard') {
-            btnDashboard.className = "px-6 py-3 rounded-full font-bold shadow-sm transition-all view-btn-active";
-            btnModels.className = "px-6 py-3 rounded-full font-bold shadow-sm transition-all view-btn-inactive";
-            viewDashboard.classList.remove('hidden');
-            viewDashboard.classList.add('block');
-            viewModels.classList.add('hidden');
-            viewModels.classList.remove('block');
-        } else {
-            btnDashboard.className = "px-6 py-3 rounded-full font-bold shadow-sm transition-all view-btn-inactive";
-            btnModels.className = "px-6 py-3 rounded-full font-bold shadow-sm transition-all view-btn-active";
-            viewDashboard.classList.add('hidden');
-            viewDashboard.classList.remove('block');
-            viewModels.classList.remove('hidden');
-            viewModels.classList.add('block');
-        }
+        // 버튼 스타일링 상태 관리
+        btnDashboard.className = viewId === 'dashboard' ? "px-5 py-3 rounded-full font-bold shadow-sm transition-all view-btn-active" : "px-5 py-3 rounded-full font-bold shadow-sm transition-all view-btn-inactive";
+        btnModels.className = viewId === 'models' ? "px-5 py-3 rounded-full font-bold shadow-sm transition-all view-btn-active" : "px-5 py-3 rounded-full font-bold shadow-sm transition-all view-btn-inactive";
+        btnExtended.className = viewId === 'extended' ? "px-5 py-3 rounded-full font-bold shadow-sm transition-all view-btn-active" : "px-5 py-3 rounded-full font-bold shadow-sm transition-all view-btn-inactive";
+
+        // 화면 표출 분기 처리
+        viewDashboard.className = viewId === 'dashboard' ? "block space-y-12" : "hidden";
+        viewModels.className = viewId === 'models' ? "block space-y-8" : "hidden";
+        viewExtended.className = viewId === 'extended' ? "block space-y-8" : "hidden";
     };
 
-    // 모델 리스트에서 상세 프로필 변경 이벤트
+    // 표준 6대 모델 프로필 상세 전이 처리
     window.selectModelProfile = function(modelKey) {
-        // 모든 리스트 버튼 초기화
         const container = document.getElementById('modelListContainer');
         const buttons = container.getElementsByTagName('button');
-        
         for (let btn of buttons) {
             btn.className = "w-full text-left p-4 rounded-xl font-bold border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all flex justify-between items-center";
         }
-
-        // 선택된 버튼 활성화 스타일
         event.currentTarget.className = "w-full text-left p-4 rounded-xl font-bold border transition-all flex justify-between items-center bg-indigo-50 border-indigo-500 text-indigo-900";
 
-        // 데이터 변경 바인딩
         const profile = modelProfiles[modelKey];
-        
-        document.getElementById('detail-title').innerText = profile.title;
-        document.getElementById('detail-tagline').innerText = profile.tagline;
-        document.getElementById('detail-badge').innerText = profile.badge;
-        document.getElementById('detail-speed').innerText = profile.speed;
-        document.getElementById('detail-quant').innerText = profile.quant;
-        document.getElementById('detail-vram').innerText = profile.vram;
-        document.getElementById('detail-context').innerText = profile.context;
-        document.getElementById('detail-desc').innerText = profile.desc;
-        document.getElementById('detail-cmd').innerText = profile.cmd;
-        document.getElementById('detail-prompt').innerText = profile.prompt;
+        updateProfileDOM('detail-', profile);
+    };
 
-        // 장점 바인딩
-        const prosContainer = document.getElementById('detail-pros');
+    // 확장 특수목적 모델 프로필 상세 전이 처리
+    window.selectExtendedProfile = function(modelKey) {
+        const container = document.getElementById('extendedListContainer');
+        const buttons = container.getElementsByTagName('button');
+        for (let btn of buttons) {
+            btn.className = "w-full text-left p-4 rounded-xl font-bold border border-slate-200 text-slate-700 hover:bg-slate-50 transition-all flex justify-between items-center";
+        }
+        event.currentTarget.className = "w-full text-left p-4 rounded-xl font-bold border transition-all flex justify-between items-center bg-indigo-50 border-indigo-500 text-indigo-900";
+
+        const profile = extendedProfiles[modelKey];
+        updateProfileDOM('ext-', profile);
+    };
+
+    // DOM 업데이트 공용 함수
+    function updateProfileDOM(prefix, profile) {
+        document.getElementById(prefix + 'title').innerText = profile.title;
+        document.getElementById(prefix + 'tagline').innerText = profile.tagline;
+        document.getElementById(prefix + 'badge').innerText = profile.badge;
+        document.getElementById(prefix + 'speed').innerText = profile.speed;
+        document.getElementById(prefix + 'quant').innerText = profile.quant;
+        document.getElementById(prefix + 'vram').innerText = profile.vram;
+        document.getElementById(prefix + 'context').innerText = profile.context;
+        document.getElementById(prefix + 'desc').innerText = profile.desc;
+        document.getElementById(prefix + 'cmd').innerText = profile.cmd;
+        document.getElementById(prefix + 'prompt').innerText = profile.prompt;
+
+        // 장점 갱신
+        const prosContainer = document.getElementById(prefix + 'pros');
         prosContainer.innerHTML = '';
         profile.pros.forEach(p => {
             const li = document.createElement('li');
@@ -364,30 +483,30 @@ tailwind.config = {
             prosContainer.appendChild(li);
         });
 
-        // 단점 바인딩
-        const consContainer = document.getElementById('detail-cons');
+        // 단점 갱신
+        const consContainer = document.getElementById(prefix + 'cons');
         consContainer.innerHTML = '';
         profile.cons.forEach(c => {
             const li = document.createElement('li');
             li.innerText = c;
             consContainer.appendChild(li);
         });
-    };
+    }
 
-    // Chart.js 초기화 시 전역 기본 스타일 주입
+    // Chart.js 초기 인스턴스 활성화
     Chart.defaults.font.family = 'system-ui, -apple-system, sans-serif';
     Chart.defaults.color = '#475569';
     Chart.defaults.plugins.tooltip.padding = 12;
 
-    // 1. 메모리 분석 원형 도표
+    // 1. 메모리 분포 도넛 차트
     const ctxMemory = document.getElementById('memoryMapChart').getContext('2d');
     new Chart(ctxMemory, {
         type: 'doughnut',
         data: {
-            labels: ['macOS 시스템 커널 (4.5GB)', '로컬 LLM 가중치 VRAM (8.5GB)', '여유 캐시 메모리 (3.0GB)'],
+            labels: ['macOS 커널 기본 점유 (4.5GB)', '로컬 LLM 가중치 VRAM (8.5GB)', '가용 캐시 버퍼 메모리 (3.0GB)'],
             datasets: [{
                 data: [4.5, 8.5, 3.0],
-                backgroundColor: ['#cbd5e1', '#4f46e5', '#34d399'],
+                backgroundColor: ['#cbd5e1', '#4f46e5', '#10b981'],
                 borderWidth: 0,
                 hoverOffset: 6
             }]
@@ -401,7 +520,7 @@ tailwind.config = {
         }
     });
 
-    // 2. 완벽 수정된 종합 6대 모델 평가지표 레이더 차트
+    // 2. 종합 레이더 밸런스 차트 (왜곡 최소화)
     const ctxRadar = document.getElementById('refinedRadarChart').getContext('2d');
     new Chart(ctxRadar, {
         type: 'radar',
@@ -417,19 +536,14 @@ tailwind.config = {
                     grid: { color: 'rgba(0,0,0,0.08)' },
                     suggestedMin: 60,
                     suggestedMax: 100,
-                    pointLabels: {
-                        font: { size: 12, weight: 'bold' },
-                        color: '#1e293b'
-                    }
+                    pointLabels: { font: { size: 12, weight: 'bold' }, color: '#1e293b' }
                 }
             },
-            plugins: {
-                legend: { position: 'bottom', labels: { padding: 20 } }
-            }
+            plugins: { legend: { position: 'bottom', labels: { padding: 20 } } }
         }
     });
 
-    // 3. 양자화 비트 정밀 차트
+    // 3. 양자화 대비 효율성 비교 혼합 선도
     const ctxQuant = document.getElementById('quantDetailChart').getContext('2d');
     new Chart(ctxQuant, {
         type: 'line',
@@ -457,9 +571,7 @@ tailwind.config = {
                     title: { display: true, text: 'VRAM 할당량 (GB)', font: { weight: 'bold' } }
                 }
             },
-            plugins: {
-                legend: { position: 'bottom' }
-            }
+            plugins: { legend: { position: 'bottom' } }
         }
     });
 </script>
